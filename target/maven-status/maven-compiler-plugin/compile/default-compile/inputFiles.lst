@@ -1,0 +1,6 @@
+/home/wellikson/Desktop/Padroes de Projetos/simple-factory/src/main/java/com/mycompany/simple/factory/Principal.java
+/home/wellikson/Desktop/Padroes de Projetos/simple-factory/src/main/java/com/mycompany/simple/factory/ExportadorListaProdutoHtml.java
+/home/wellikson/Desktop/Padroes de Projetos/simple-factory/src/main/java/com/mycompany/simple/factory/ExportadorListaProduto.java
+/home/wellikson/Desktop/Padroes de Projetos/simple-factory/src/main/java/com/mycompany/simple/factory/AbstractExportadorListaProduto.java
+/home/wellikson/Desktop/Padroes de Projetos/simple-factory/src/main/java/com/mycompany/simple/factory/Produto.java
+/home/wellikson/Desktop/Padroes de Projetos/simple-factory/src/main/java/com/mycompany/simple/factory/ExportadorListaProdutoMarkdown.java

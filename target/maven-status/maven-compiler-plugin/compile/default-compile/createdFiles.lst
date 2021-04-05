@@ -1,0 +1,6 @@
+com/mycompany/simple/factory/ExportadorListaProdutoMarkdown.class
+com/mycompany/simple/factory/AbstractExportadorListaProduto.class
+com/mycompany/simple/factory/ExportadorListaProduto.class
+com/mycompany/simple/factory/Produto.class
+com/mycompany/simple/factory/ExportadorListaProdutoHtml.class
+com/mycompany/simple/factory/Principal.class
