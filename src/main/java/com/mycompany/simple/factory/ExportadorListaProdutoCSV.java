@@ -5,6 +5,8 @@
  */
 package com.mycompany.simple.factory;
 
+import java.util.function.Function;
+
 /**
  *
  * @author wellikson
@@ -37,13 +39,8 @@ public class ExportadorListaProdutoCSV extends AbstractExportadorListaProduto {
     }
 
     @Override
-    public String abrirColuna(String valor) {
-        return valor;
-    }
+    public void addNewColuna(Function<Produto, Object> obtemValorColuna, String titulo) {
+        addColuna(new ColunaCSV(obtemValorColuna,titulo));    }
 
-    @Override
-    public String fecharColuna() {
-        return ",";
-    }
 }
 

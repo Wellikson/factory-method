@@ -15,14 +15,14 @@ public class Produto {
     private String descricao;
     private String marca;
     private String modelo;
-    private int estoque;
+    private int preco;
 
-    public Produto(int id, String descricao, String marca, String modelo, int estoque) {
+    public Produto(int id, String descricao, String marca, String modelo, int preco) {
         this.id = id;
         this.descricao = descricao;
         this.marca = marca;
         this.modelo = modelo;
-        this.estoque = estoque;
+        this.preco = preco;
     }
 
     
@@ -59,11 +59,11 @@ public class Produto {
         this.modelo = modelo;
     }
 
-    public int getEstoque() {
-        return estoque;
+    public int getPreco() {
+        return preco;
     }
 
-    public void setEstoque(int estoque) {
-        this.estoque = estoque;
+    public void setPreco(int preco) {
+        this.preco = preco;
     }
 }

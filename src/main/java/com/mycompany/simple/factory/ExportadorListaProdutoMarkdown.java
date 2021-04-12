@@ -5,17 +5,13 @@
  */
 package com.mycompany.simple.factory;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.function.Function;
 
 /**
  *
  * @author wellikson
  */
 public class ExportadorListaProdutoMarkdown extends AbstractExportadorListaProduto {
-
-    private static final String SEPARADOR_LN = "-";
-    private static final String SEPARADOR_COL = "|";
 
     @Override
     public String abrirTabela() {
@@ -39,20 +35,17 @@ public class ExportadorListaProdutoMarkdown extends AbstractExportadorListaProdu
 
     @Override
     public String fecharLinhaTitulos() {
-        List<String> valores = new ArrayList<>();
-        for (int i = 0; i < TITULOS_COLUNAS.size(); i++) {
-            valores.add("-----");
+        StringBuilder sb = new StringBuilder();
+        for (Coluna coluna : getColunas()) {
+            sb.append(coluna.abrir()+"-----");
         }
-        return gerarColunasLinha(valores);
+        sb.append("\n");
+        return sb.toString();
     }
 
     @Override
-    public String abrirColuna(String valor) {
-        return valor;
+    public void addNewColuna(Function<Produto, Object> obtemValorColuna, String titulo) {
+        addColuna(new ColunaMarkdown(obtemValorColuna,titulo));
     }
 
-    @Override
-    public String fecharColuna() {
-        return " " + SEPARADOR_COL;
-    }
 }

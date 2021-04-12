@@ -6,6 +6,7 @@
 package com.mycompany.simple.factory;
 
 import java.util.List;
+import java.util.function.Function;
 
 /**
  *
@@ -14,20 +15,13 @@ import java.util.List;
 public interface ExportadorListaProduto {
 
     String abrirTabela();
-
     String fecharTabela();
-
     String abrirLinha();
-
     String fecharLinha();
-
     String fecharLinhaTitulos();
-
-    String abrirColuna(String valor);
-
-    String fecharColuna();
-
     String exportar(List<Produto> produtos);
+
+    void addNewColuna(Function<Produto ,Object> obtemValorColuna, String titulo);
 
     static ExportadorListaProduto newInstance() {
         return newInstance("html");

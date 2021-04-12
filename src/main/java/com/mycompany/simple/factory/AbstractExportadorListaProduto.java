@@ -5,7 +5,7 @@
  */
 package com.mycompany.simple.factory;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,15 +13,36 @@ import java.util.List;
  * @author wellikson
  */
 public abstract class AbstractExportadorListaProduto implements ExportadorListaProduto {
+    private List<Coluna>colunas;
 
-    protected static final List<String> TITULOS_COLUNAS = Arrays.asList("ID", "Descrição", "Marca", "Modelo", "Estoque");
+    protected List<Coluna> getColunas() {
+        return colunas;
+    }
+
+
+    public AbstractExportadorListaProduto() {
+       colunas = new ArrayList<>();
+       addNewColuna(Produto::getId,"Código");
+       addNewColuna(Produto::getDescricao,"Descrição");
+       addNewColuna(Produto::getPreco,"Preço");
+
+    }
+
+    protected void addColuna(Coluna coluna) {
+        colunas.add(coluna);
+    }
 
     @Override
     public final String exportar(List<Produto> listaProdutos) {
         final StringBuilder sb = new StringBuilder();
         sb.append(abrirTabela());
 
-        sb.append(gerarColunasLinha(TITULOS_COLUNAS));
+        sb.append(abrirLinha());
+        for(Coluna coluna:colunas){
+            sb.append(coluna.exportarCabecalho());
+        }
+        sb.append(fecharLinha());
+        sb.append("\n");
         sb.append(fecharLinhaTitulos());
         gerarLinhasProdutos(sb, listaProdutos);
 
@@ -31,22 +52,15 @@ public abstract class AbstractExportadorListaProduto implements ExportadorListaP
 
     private void gerarLinhasProdutos(StringBuilder sb, List<Produto> listaProdutos) {
         for (Produto produto : listaProdutos) {
-            List<String> valoresCamposProduto
-                    = Arrays.asList(String.valueOf(produto.getId()),
-                            produto.getDescricao(),
-                            produto.getMarca(),
-                            produto.getModelo(),
-                            String.valueOf(produto.getEstoque()));
-            sb.append(gerarColunasLinha(valoresCamposProduto));
+            sb.append(gerarColunasLinha(produto));
         }
     }
 
-    protected String gerarColunasLinha(List<String> valores) {
+    protected String gerarColunasLinha(Produto produto) {
         StringBuilder sb = new StringBuilder();
         sb.append(abrirLinha());
-        for (String valor : valores) {
-            sb.append(abrirColuna(valor))
-                    .append(fecharColuna());
+        for (Coluna coluna : colunas) {
+            sb.append(coluna.exportarDado(produto));
         }
         sb.append(fecharLinha());
         return sb.toString();
